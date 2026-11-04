@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MergeFiles Help</title>
+<style>
+:root { --text: #1e1e22; --muted: #5c5c66; --line: #dcdce2; --side: #f4f4f7; --accent: #2b6cd8; --code: #f0f0f4; --ins: #def4da; --rem: #fde4ce; --chg: #eeeafc; --conf: #fcdede; }
+@media (prefers-color-scheme: dark) {
+  :root { --text: #e6e6ea; --muted: #a2a2ac; --line: #3a3a42; --side: #1d1d22; --accent: #6ea2f5; --code: #2a2a31; --ins: #23432a; --rem: #4a3322; --chg: #34304d; --conf: #4d2a2a; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.55 "Segoe UI", system-ui, sans-serif; color: var(--text); background: Canvas; }
+nav { position: fixed; top: 0; bottom: 0; left: 0; width: 250px; overflow-y: auto; padding: 20px 16px; background: var(--side); border-right: 1px solid var(--line); }
+nav h1 { font-size: 18px; margin: 0 0 12px; }
+nav a { display: block; padding: 3px 8px; border-radius: 4px; color: var(--text); text-decoration: none; font-size: 14px; }
+nav a:hover { background: var(--line); }
+nav .group { margin: 14px 0 4px 8px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+main { margin-left: 250px; padding: 24px 40px 80px; max-width: 980px; }
+section { padding-top: 8px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+section:target { animation: flash 1.6s ease-out; }
+@keyframes flash { from { background: color-mix(in srgb, var(--accent) 18%, transparent); } to { background: transparent; } }
+h2 { margin: 18px 0 8px; font-size: 22px; }
+h3 { margin: 16px 0 6px; font-size: 16px; }
+p, li { max-width: 72ch; }
+kbd { font: 12px Consolas, monospace; padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; background: var(--code); }
+code { font: 13px Consolas, monospace; background: var(--code); padding: 1px 4px; border-radius: 3px; }
+table { border-collapse: collapse; margin: 8px 0; }
+td, th { border: 1px solid var(--line); padding: 4px 10px; text-align: left; vertical-align: top; font-size: 14px; }
+th { background: var(--side); }
+.swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; border: 1px solid var(--line); }
+.see { color: var(--muted); font-size: 14px; }
+a { color: var(--accent); }
+@media (max-width: 760px) { nav { position: static; width: auto; border-right: 0; border-bottom: 1px solid var(--line); } main { margin-left: 0; padding: 16px; } }
+</style>
+</head>
+<body>
+<nav>
+  <h1>MergeFiles Help</h1>
+  <a href="#overview">Overview</a>
+  <a href="#new-comparison">Starting a comparison</a>
+  <a href="#keyboard">Keyboard shortcuts</a>
+  <div class="group">Files</div>
+  <a href="#file-comparison">Two-way comparison</a>
+  <a href="#three-way">Three-way merge</a>
+  <a href="#editing">Editing and merging</a>
+  <a href="#find">Find, replace, go to line</a>
+  <a href="#bookmarks">Bookmarks and comments</a>
+  <a href="#sync">Synchronization links</a>
+  <a href="#documents">Word, Excel and other documents</a>
+  <a href="#encodings">Encodings and line endings</a>
+  <div class="group">Folders</div>
+  <a href="#folder-comparison">Folder comparison</a>
+  <a href="#folder-merge">Synchronizing and merging folders</a>
+  <a href="#select-files">Select Files</a>
+  <a href="#archives">Archives (.zip, .tar)</a>
+  <div class="group">Other files</div>
+  <a href="#binary">Binary files</a>
+  <a href="#images">Images</a>
+  <a href="#patches">Patch files</a>
+  <a href="#xml">XML</a>
+  <div class="group">Output</div>
+  <a href="#reports">Reports</a>
+  <a href="#comparison-archives">Comparison archives</a>
+  <a href="#printing">Printing</a>
+  <div class="group">Options</div>
+  <a href="#opt-compare">Comparison options</a>
+  <a href="#opt-rules">Rules</a>
+  <a href="#opt-display">Display</a>
+  <a href="#opt-folders">Folders and images</a>
+  <a href="#statistics">Statistics</a>
+</nav>
+<main>
+
+<section id="overview">
+<h2>Overview</h2>
+<p>MergeFiles compares two or three files or folders side by side and helps you merge them. Changed blocks are tinted, the characters that changed inside a block are highlighted more strongly, and curved lines in the gutter join each block to its counterpart.</p>
+<table>
+<tr><th>Colour</th><th>Meaning</th></tr>
+<tr><td><span class="swatch" style="background:var(--ins)"></span>Green</td><td>Inserted: text only on this side.</td></tr>
+<tr><td><span class="swatch" style="background:var(--rem)"></span>Orange</td><td>Removed: text only on the other side (shown on the side that has it).</td></tr>
+<tr><td><span class="swatch" style="background:var(--chg)"></span>Purple</td><td>Changed: different on both sides.</td></tr>
+<tr><td><span class="swatch" style="background:var(--conf)"></span>Red</td><td>Conflict (three-way): both sides changed the same lines differently.</td></tr>
+</table>
+<p>Press <kbd>F1</kbd> anywhere to open the help topic for what you are doing. In a dialog box, <kbd>F1</kbd> opens the topic for that dialog.</p>
+</section>
+
+<section id="new-comparison">
+<h2>Starting a comparison</h2>
+<ul>
+<li><b>File &gt; New Two-Way Comparison</b> (<kbd>Ctrl+N</kbd>) or <b>New Three-Way Comparison</b> (<kbd>Ctrl+Shift+N</kbd>) asks for the files. <b>New Folder Comparison</b> (<kbd>Ctrl+D</kbd>) asks for folders; a .zip or .tar archive can be given in place of a folder.</li>
+<li>Drop two or three files or folders on the window. Dropping one file on a pane replaces that pane's file.</li>
+<li>From the command line: <code>MergeFiles.exe left right</code> or <code>MergeFiles.exe left ancestor right</code>. A <code>.patch</code> or <code>.diff</code> file opens as a patch, and a <code>.mfcmp</code> file opens as a saved comparison.</li>
+</ul>
+<p>What opens depends on the files: text files open as a text comparison; Word, Excel, PowerPoint, OpenDocument and RTF files open as a comparison of their text; images open as an image comparison; other binary files open as a byte comparison; folders and archives open as a folder comparison.</p>
+</section>
+
+<section id="keyboard">
+<h2>Keyboard shortcuts</h2>
+<table>
+<tr><th>Keys</th><th>Command</th></tr>
+<tr><td><kbd>Alt+Down</kbd> / <kbd>Alt+Up</kbd></td><td>Next / previous difference</td></tr>
+<tr><td><kbd>Alt+Right</kbd> / <kbd>Alt+Left</kbd></td><td>Copy the current difference to the right / left</td></tr>
+<tr><td><kbd>Ctrl+S</kbd>, <kbd>Ctrl+Shift+S</kbd></td><td>Save the current pane, save all</td></tr>
+<tr><td><kbd>Ctrl+Z</kbd>, <kbd>Ctrl+Y</kbd></td><td>Undo, redo</td></tr>
+<tr><td><kbd>Ctrl+F</kbd>, <kbd>Ctrl+H</kbd>, <kbd>F3</kbd></td><td>Find, replace, find next</td></tr>
+<tr><td><kbd>Ctrl+G</kbd></td><td>Go to line</td></tr>
+<tr><td><kbd>Ctrl+F2</kbd>, <kbd>F2</kbd>, <kbd>Ctrl+Shift+F2</kbd></td><td>Toggle bookmark, next bookmark, bookmark comment</td></tr>
+<tr><td><kbd>Ctrl+E</kbd>, <kbd>Ctrl+P</kbd></td><td>Create report, print</td></tr>
+<tr><td><kbd>F5</kbd>, <kbd>Esc</kbd></td><td>Compare again (folders: start), stop a folder comparison</td></tr>
+<tr><td><kbd>Ctrl+Tab</kbd>, <kbd>Ctrl+W</kbd></td><td>Next tab, close tab</td></tr>
+</table>
+</section>
+
+<section id="file-comparison">
+<h2>Two-way comparison</h2>
+<p>The two files are shown side by side with a path bar above each. Scrolling is synchronized: corresponding lines stay level. The overview strips at the edges show the whole file; click one to jump there. With <b>View &gt; Line Detail</b>, the current line of each file is shown one above the other at the bottom, which makes small changes in long lines easy to see.</p>
+<p>The status bar shows the encoding and line endings of the current pane, the number of removals, insertions and changes, and the caret position.</p>
+<p class="see">See also: <a href="#editing">Editing and merging</a>, <a href="#opt-compare">Comparison options</a>.</p>
+</section>
+
+<section id="three-way">
+<h2>Three-way merge</h2>
+<p>A three-way comparison shows two changed versions (left and right) and their common ancestor in the middle. The middle file is the merge target: changes made on only one side can be taken automatically, and conflicts (red) need a decision.</p>
+<ul>
+<li><b>Merge &gt; Automatic Merge</b> takes every change made on only one side, and identical changes made on both.</li>
+<li>Click the arrow on a block, or use <kbd>Alt+Right</kbd> / <kbd>Alt+Left</kbd>, to take a side's version of a conflict.</li>
+<li>Edit the middle file directly where neither side is right, then mark the lines as resolved (<b>Merge &gt; Mark Resolved</b>).</li>
+<li><b>Next/Previous Conflict</b> skips the blocks that merged cleanly.</li>
+</ul>
+</section>
+
+<section id="editing">
+<h2>Editing and merging</h2>
+<p>Every pane can be edited in place (unless the file is read-only). Text can be dragged between panes. Each block has merge arrows in the gutter that copy it to the other side; <b>Replace Right/Left</b> copies a whole file. Undo and redo cover typing, merges and replacements. Indent and un-indent selected lines with <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd>.</p>
+<p>The comparison is updated as you type. <b>Compare Again</b> (<kbd>F5</kbd>) re-reads nothing; it recomputes the differences with the current options.</p>
+</section>
+
+<section id="find">
+<h2>Find, replace and go to line</h2>
+<p><b>Edit &gt; Find</b> (<kbd>Ctrl+F</kbd>) and <b>Replace</b> (<kbd>Ctrl+H</kbd>) search the current pane, optionally matching case or whole words, or only within the selection. <kbd>F3</kbd> and <kbd>Shift+F3</kbd> repeat the last search. <b>Go To Line</b> (<kbd>Ctrl+G</kbd>) moves the caret to a line of the current pane.</p>
+</section>
+
+<section id="bookmarks">
+<h2>Bookmarks and comments</h2>
+<p><kbd>Ctrl+F2</kbd> sets or removes a bookmark on the caret's line; <kbd>F2</kbd> and <kbd>Shift+F2</kbd> move between bookmarks. <b>Edit &gt; Bookmark Comment</b> (<kbd>Ctrl+Shift+F2</kbd>) bookmarks the line and attaches a note, for example a question for a reviewer.</p>
+<p>A comment is shown as a yellow tag at the end of its line and in the status bar when the caret is on that line. It moves with the line as you edit, and it is included in reports, printouts and <a href="#comparison-archives">comparison archives</a>.</p>
+</section>
+
+<section id="sync">
+<h2>Synchronization links</h2>
+<p>When the comparison pairs the wrong lines (for example after a large reorganisation), put the caret on corresponding lines in each pane and choose <b>Synchronize the Current Lines</b>. The files are then compared separately above and below the link, shown as a dotted blue line.</p>
+</section>
+
+<section id="documents">
+<h2>Word, Excel and other documents</h2>
+<p>Word (.docx), Excel (.xlsx), PowerPoint (.pptx), OpenDocument (.odt, .ods, .odp) and RTF files are compared by their text. The text is read-only, and saving changes back into the documents is not supported. It is laid out like this:</p>
+<ul>
+<li>one paragraph per line, and one table row per line with the cells separated by tabs;</li>
+<li>each worksheet starts with a <code>[Sheet: name]</code> line and each slide with <code>[Slide n]</code>. Spreadsheet cells show their values (formulas are not shown);</li>
+<li>Word footnotes and endnotes follow the body. Deleted tracked changes and comments are left out.</li>
+</ul>
+<p>In a folder comparison with the <b>Thorough</b> mode, documents are compared by their text too. Two documents that differ only in how they were saved count as identical.</p>
+<p>Old binary formats (.doc, .xls, .ppt) and PDF files are not supported.</p>
+</section>
+
+<section id="encodings">
+<h2>Encodings and line endings</h2>
+<p>MergeFiles detects UTF-8 and UTF-16 (with or without a byte order mark) and otherwise uses the system code page. A file is saved in the encoding it was read with; <b>Current Pane &gt; Encoding</b> changes that. <b>Reload As</b> re-reads a file with a chosen encoding (for example Shift-JIS). Line endings (CR LF, LF, CR) are kept per line, and differences in line endings are ignored unless you turn that option off.</p>
+</section>
+
+<section id="folder-comparison">
+<h2>Folder comparison</h2>
+<p>Two or three folder hierarchies are listed as one tree with a status for every file and folder: identical, different, only on one side, or (three-way) changed on the left, on the right, the same on both, or in conflict. The comparison runs in the background; <b>Stop</b> (<kbd>Esc</kbd>) ends it early.</p>
+<p>Select a file to see its comparison in the lower half. Press <kbd>Enter</kbd> or double-click to open an image, binary file or archive in a tab of its own. The <b>Show</b> buttons hide identical items or items that exist on one side only.</p>
+<p>How files are compared is set in <a href="#opt-folders">Options &gt; Folders and Images</a>: by size and date (quick), byte by byte, or thoroughly as text with the comparison rules.</p>
+</section>
+
+<section id="folder-merge">
+<h2>Synchronizing and merging folders</h2>
+<p><b>Copy to the Right/Left</b> makes the other side match the selected items. Copying a missing item deletes it from the other side, and deleted items go to the Recycle Bin. In a three-way folder comparison, <b>Automatic Merge</b> applies to the ancestor folder every change made on one side only. Files changed on both sides are merged line by line when that gives no conflicts. Everything else is left for you.</p>
+</section>
+
+<section id="select-files">
+<h2>Select Files</h2>
+<p>Selects the items matching a wildcard pattern (for example <code>*.cpp;*.h</code>), limited to the statuses you tick, so that one copy or delete command can act on all of them.</p>
+</section>
+
+<section id="archives">
+<h2>Archives (.zip, .tar)</h2>
+<p>A .zip, .jar, .war, .ear, .nupkg, .vsix, .tar, .tgz or .tar.gz file can be used wherever a folder can. Compare two archives, or an archive with a folder to check what changed since the archive was made. Archive contents are compared like files on disk.</p>
+<ul>
+<li>Archives are read-only: you can copy from an archive to a folder (extracting), but not into an archive or delete from it.</li>
+<li>Files shown from inside an archive are temporary copies, removed when MergeFiles closes.</li>
+<li>An archive inside a folder comparison opens as a folder comparison of its own when you press <kbd>Enter</kbd> on it.</li>
+<li>Encrypted entries, and compression methods other than stored and deflate, cannot be read.</li>
+</ul>
+</section>
+
+<section id="binary">
+<h2>Binary files</h2>
+<p>Files that are not text are shown in hex, 16 bytes per row with their characters, and differing bytes are highlighted. Files up to 1 MB are aligned so that inserted or removed bytes do not make the rest of the file differ.</p>
+</section>
+
+<section id="images">
+<h2>Images</h2>
+<p>Two images are shown side by side with a third panel that marks the differing pixels in red. Differing areas are outlined, and <kbd>Alt+Down</kbd> / <kbd>Alt+Up</kbd> zoom to the next or previous one. Zoom with <kbd>Ctrl</kbd> and the mouse wheel, and drag to pan. The colour tolerance is in <a href="#opt-folders">Options</a>.</p>
+</section>
+
+<section id="patches">
+<h2>Patch files</h2>
+<p>A unified diff (from git, svn or <code>diff -u</code>) opens as a list of its files and hunks with check boxes. <b>Apply Checked Hunks</b> applies the selected changes to the files under a folder you choose. Each hunk is found near the line its header gives, so lines that moved still apply. Every patched file then opens as a comparison to review and save. <b>Reverse</b> takes a patch back out.</p>
+</section>
+
+<section id="xml">
+<h2>XML</h2>
+<p><b>View &gt; Compare as Formatted XML</b> opens a read-only comparison of the two files laid out one element per line, which makes changes in files written on a single line easy to find.</p>
+</section>
+
+<section id="reports">
+<h2>Reports</h2>
+<p><b>File &gt; Create Report</b> (<kbd>Ctrl+E</kbd>) saves the comparison as:</p>
+<ul>
+<li><b>HTML</b>: side by side in the comparison's colours, with changed characters highlighted;</li>
+<li><b>HTML slideshow</b>: one difference at a time, with Previous/Next buttons and the arrow keys;</li>
+<li><b>XML</b>, for processing by other tools;</li>
+<li><b>Unified diff</b>, a patch that other tools can apply.</li>
+</ul>
+<p>Choose the whole files, or only the differences with some lines of context around them. A folder report lists the items and their statuses, and can include a report of every file that differs.</p>
+</section>
+
+<section id="comparison-archives">
+<h2>Comparison archives</h2>
+<p><b>File &gt; Save Comparison Archive</b> saves a whole comparison in one <code>.mfcmp</code> file to send to a colleague. The file holds:</p>
+<ul>
+<li>the text of every file and its encoding;</li>
+<li>the comparison options;</li>
+<li>bookmarks and their comments, resolved lines and synchronization links.</li>
+</ul>
+<p>Open it with <b>File &gt; Open Comparison Archive</b>, by dropping it on the window, or by passing it on the command line. A folder comparison archive keeps the results; it opens read-only, and <b>Start</b> compares the folders again as they are now.</p>
+</section>
+
+<section id="printing">
+<h2>Printing</h2>
+<p><b>File &gt; Print</b> (<kbd>Ctrl+P</kbd>) and <b>Print Preview</b> print the comparison side by side in its colours. Long lines are wrapped, filler marks where the other side has lines, and comments appear under their lines.</p>
+<p><b>Page Setup</b> sets:</p>
+<ul>
+<li>the header and footer, with the fields <code>{title}</code>, <code>{files}</code>, <code>{date}</code>, <code>{page}</code> and <code>{pages}</code>;</li>
+<li>portrait or landscape;</li>
+<li>the font size;</li>
+<li><b>Print only pages with changes</b>, to save paper.</li>
+</ul>
+</section>
+
+<section id="opt-compare">
+<h2>Comparison options</h2>
+<p><b>Options &gt; Options &gt; Comparison</b> sets how lines are compared:</p>
+<ul>
+<li>whitespace: compared, changes ignored, or ignored entirely;</li>
+<li>case, and line endings;</li>
+<li>inserted or removed blank lines;</li>
+<li>a numeric tolerance, absolute or relative, under which numbers count as equal.</li>
+</ul>
+<p>Blocks that differ only in ways you ignore are shown in grey and are not counted as differences.</p>
+</section>
+
+<section id="opt-rules">
+<h2>Rules</h2>
+<p>Regular expressions for text to leave out of the comparison, such as comments or version-control keywords. <b>Line rules</b> remove matching text within a line. <b>Block rules</b> ignore everything from a begin pattern to an end pattern. A <b>line pairing rule</b> picks the part of each line used to pair changed lines, which helps with files such as translations where one key is followed by different text.</p>
+</section>
+
+<section id="opt-display">
+<h2>Display</h2>
+<p>The font and its size, tab width, word wrap, padding lines (which show missing lines as blank rows instead of linking lines), the line detail panel, syntax highlighting, visible whitespace, and the colours used for differences.</p>
+</section>
+
+<section id="opt-folders">
+<h2>Folders and images</h2>
+<p>How folder comparisons compare files (quick, byte by byte, or thorough), the size above which thorough mode falls back to bytes, which files to include or exclude (wildcards separated by <code>;</code>, with a trailing <code>\</code> for folders), and the colour tolerance for image comparisons.</p>
+</section>
+
+<section id="statistics">
+<h2>Statistics</h2>
+<p><b>View &gt; Statistics</b> counts the lines, changed lines and differences of each file, or the items of each status in a folder comparison.</p>
+</section>
+
+</main>
+</body>
+</html>

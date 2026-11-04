@@ -1,0 +1,1 @@
+<?xml version="1.0"?><config><server host="localhost" port="8080"/><users><user id="1">alice</user><user id="2">bob</user></users><!-- logging --><log level="info"/></config>

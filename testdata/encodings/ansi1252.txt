@@ -1,0 +1,3 @@
+Grüße aus Köln - "Unicode" test
+Second line: naïve café
+Third line

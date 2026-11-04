@@ -1,0 +1,617 @@
+// MergeFiles.rc - icon, menus, accelerators, dialogs, strings and version resources
+#include "resource.h"
+#include "afxres.h"
+#include "winres.h"
+#include "Version.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+IDR_MAINFRAME ICON "res\\MergeFiles.ico"
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New Two-Way Comparison...\tCtrl+N", ID_FILE_NEW_TWO_WAY
+        MENUITEM "New &Three-Way Comparison...\tCtrl+Shift+N", ID_FILE_NEW_THREE_WAY
+        MENUITEM "New &Folder Comparison...\tCtrl+D", ID_FILE_NEW_FOLDERS
+        MENUITEM "Open &Patch File...\tCtrl+Shift+O", ID_FILE_OPEN_PATCH
+        MENUITEM "Open Comparison Arc&hive...", ID_FILE_OPEN_ARCHIVE
+        MENUITEM "&Open File in Current Pane...\tCtrl+O", ID_FILE_OPEN_IN_PANE
+        MENUITEM SEPARATOR
+        MENUITEM "&Save Current Pane\tCtrl+S", ID_FILE_SAVE_PANE
+        MENUITEM "Save Current Pane &As...", ID_FILE_SAVE_PANE_AS
+        MENUITEM "Save A&ll\tCtrl+Shift+S", ID_FILE_SAVE_ALL_PANES
+        MENUITEM "Save Comparison A&rchive...", ID_FILE_SAVE_ARCHIVE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &Report...\tCtrl+E", ID_FILE_REPORT
+        MENUITEM "Page Set&up...", ID_FILE_PAGE_SETUP_MF
+        MENUITEM "Print Pre&view", ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Print...\tCtrl+P", ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "&Close Comparison\tCtrl+W", ID_FILE_CLOSE_TAB
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit", ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z", ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y", ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X", ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C", ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V", ID_EDIT_PASTE
+        MENUITEM "Select &All\tCtrl+A", ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...\tCtrl+F", ID_EDIT_FIND_TEXT
+        MENUITEM "R&eplace...\tCtrl+H", ID_EDIT_REPLACE_TEXT
+        MENUITEM "Find &Next\tF3", ID_EDIT_FIND_NEXT_TEXT
+        MENUITEM "Find Pre&vious\tShift+F3", ID_EDIT_FIND_PREV_TEXT
+        MENUITEM "&Go To Line...\tCtrl+G", ID_EDIT_GOTO_LINE
+        MENUITEM SEPARATOR
+        MENUITEM "&Indent\tTab", ID_EDIT_INDENT
+        MENUITEM "Un-in&dent\tShift+Tab", ID_EDIT_OUTDENT
+        MENUITEM SEPARATOR
+        MENUITEM "Toggle &Bookmark\tCtrl+F2", ID_BOOKMARK_TOGGLE
+        MENUITEM "Ne&xt Bookmark\tF2", ID_BOOKMARK_NEXT
+        MENUITEM "Previous Boo&kmark\tShift+F2", ID_BOOKMARK_PREV
+        MENUITEM "Bookmark Co&mment...\tCtrl+Shift+F2", ID_BOOKMARK_COMMENT
+        MENUITEM "Clear All Bookmarks", ID_BOOKMARK_CLEAR
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Two Panes", ID_VIEW_LAYOUT_TWO
+        MENUITEM "T&hree Panes", ID_VIEW_LAYOUT_THREE
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload Files and Compare\tCtrl+F5", ID_VIEW_START
+        MENUITEM "Re&compare\tF5", ID_VIEW_RECOMPARE
+        MENUITEM "Comparison &Statistics...", ID_VIEW_STATISTICS
+        MENUITEM "Compare as &Formatted XML", ID_VIEW_FORMAT_XML
+        MENUITEM SEPARATOR
+        MENUITEM "Zoom &In\tCtrl++", ID_VIEW_ZOOM_IN
+        MENUITEM "Zoom &Out\tCtrl+-", ID_VIEW_ZOOM_OUT
+        MENUITEM "Zoom to &Fit\tCtrl+0", ID_VIEW_ZOOM_FIT
+        MENUITEM "&Actual Size\tCtrl+1", ID_VIEW_ZOOM_ACTUAL
+        MENUITEM SEPARATOR
+        MENUITEM "&Word Wrap\tCtrl+Shift+W", ID_VIEW_WORD_WRAP
+        MENUITEM "Vertical &Padding\tCtrl+Shift+P", ID_VIEW_PADDING
+        MENUITEM "&Line Detail Panel\tCtrl+Shift+L", ID_VIEW_LINE_DETAIL
+        MENUITEM SEPARATOR
+        MENUITEM "Ne&xt Tab\tCtrl+Tab", ID_VIEW_NEXT_TAB
+        MENUITEM "Pre&vious Tab\tCtrl+Shift+Tab", ID_VIEW_PREV_TAB
+    END
+    POPUP "&Merge"
+    BEGIN
+        MENUITEM "&Next Change\tAlt+Down", ID_MERGE_NEXT_CHANGE
+        MENUITEM "&Previous Change\tAlt+Up", ID_MERGE_PREV_CHANGE
+        MENUITEM "Next &Conflict\tCtrl+Alt+Down", ID_MERGE_NEXT_CONFLICT
+        MENUITEM "Previous C&onflict\tCtrl+Alt+Up", ID_MERGE_PREV_CONFLICT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy Change to the &Right\tAlt+Right", ID_MERGE_COPY_TO_RIGHT
+        MENUITEM "Copy Change to the &Left\tAlt+Left", ID_MERGE_COPY_TO_LEFT
+        MENUITEM "&Automatic Merge\tCtrl+M", ID_MERGE_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "&Mark Selected Lines as Resolved\tCtrl+R", ID_MERGE_MARK_RESOLVED
+        MENUITEM "&Unmark Selected Lines\tCtrl+Shift+R", ID_MERGE_UNMARK_RESOLVED
+        MENUITEM SEPARATOR
+        MENUITEM "Replace Right File with Left File", ID_MERGE_REPLACE_RIGHT
+        MENUITEM "Replace Left File with Right File", ID_MERGE_REPLACE_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Synchronize the Current Lines\tCtrl+L", ID_SYNC_ADD
+        MENUITEM "Remove All Synchronization Lin&ks", ID_SYNC_CLEAR
+    END
+    POPUP "Fol&der"
+    BEGIN
+        MENUITEM "&Show File Comparison\tEnter", ID_FOLDER_OPEN
+        MENUITEM "Open File Comparison in a &New Tab\tShift+Enter", ID_FOLDER_OPEN_TAB
+        MENUITEM "File Comparison &Below the Folders", ID_FOLDER_SPLIT
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to the &Right\tAlt+Right", ID_MERGE_COPY_TO_RIGHT
+        MENUITEM "Copy to the &Left\tAlt+Left", ID_MERGE_COPY_TO_LEFT
+        MENUITEM "Delete from the Left...", ID_FOLDER_DELETE_LEFT
+        MENUITEM "Delete from the Right...", ID_FOLDER_DELETE_RIGHT
+        MENUITEM "&Automatic Merge into the Ancestor...\tCtrl+M", ID_MERGE_AUTO
+        MENUITEM SEPARATOR
+        MENUITEM "Select &Files...", ID_FOLDER_SELECT
+        MENUITEM "&Expand All", ID_FOLDER_EXPAND_ALL
+        MENUITEM "&Collapse All", ID_FOLDER_COLLAPSE_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Show &Identical", ID_FOLDER_SHOW_IDENTICAL
+        MENUITEM "Show Left-Only / Changed on &Left", ID_FOLDER_SHOW_LEFT
+        MENUITEM "Show Right-Only / Changed on Ri&ght", ID_FOLDER_SHOW_RIGHT
+        MENUITEM "Show &Different and Conflicts", ID_FOLDER_SHOW_DIFFERENT
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "&Compare Whitespace", ID_OPT_WS_COMPARE
+        MENUITEM "Ignore Whitespace &Changes", ID_OPT_WS_IGNORE_CHANGES
+        MENUITEM "Ignore &All Whitespace", ID_OPT_WS_IGNORE_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Ignore Ca&se", ID_OPT_IGNORE_CASE
+        MENUITEM "Ignore &Line Ending Differences", ID_OPT_IGNORE_EOL
+        MENUITEM "Ignore &Blank Lines", ID_OPT_IGNORE_BLANK
+        MENUITEM SEPARATOR
+        MENUITEM "S&yntax Highlighting", ID_OPT_SYNTAX
+        MENUITEM "Show &Whitespace and Line Endings", ID_OPT_SHOW_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "&Options...\tCtrl+,", ID_OPT_OPTIONS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "MergeFiles &Help\tF1", ID_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "&About MergeFiles...", ID_APP_ABOUT
+    END
+END
+
+// Drop-down menus of the toolbar (positions: resource.h POPUP_*)
+IDR_POPUPS MENU
+BEGIN
+    POPUP "Settings"
+    BEGIN
+        MENUITEM "&Compare Whitespace", ID_OPT_WS_COMPARE
+        MENUITEM "Ignore Whitespace &Changes", ID_OPT_WS_IGNORE_CHANGES
+        MENUITEM "Ignore &All Whitespace", ID_OPT_WS_IGNORE_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Ignore Ca&se", ID_OPT_IGNORE_CASE
+        MENUITEM "Ignore &Line Ending Differences", ID_OPT_IGNORE_EOL
+        MENUITEM "Ignore &Blank Lines", ID_OPT_IGNORE_BLANK
+        MENUITEM SEPARATOR
+        MENUITEM "S&yntax Highlighting", ID_OPT_SYNTAX
+        MENUITEM "Show &Whitespace and Line Endings", ID_OPT_SHOW_WHITESPACE
+        MENUITEM "&Word Wrap", ID_VIEW_WORD_WRAP
+        MENUITEM "Vertical &Padding", ID_VIEW_PADDING
+        MENUITEM "Line &Detail Panel", ID_VIEW_LINE_DETAIL
+        MENUITEM SEPARATOR
+        MENUITEM "&Options...", ID_OPT_OPTIONS
+    END
+    POPUP "Encoding"
+    BEGIN
+        MENUITEM "Save as UTF-8", ID_ENC_UTF8
+        MENUITEM "Save as UTF-8 with BOM", ID_ENC_UTF8_BOM
+        MENUITEM "Save as UTF-16 LE with BOM", ID_ENC_UTF16LE_BOM
+        MENUITEM "Save as UTF-16 BE with BOM", ID_ENC_UTF16BE_BOM
+        MENUITEM "Save as UTF-16 LE", ID_ENC_UTF16LE
+        MENUITEM "Save as UTF-16 BE", ID_ENC_UTF16BE
+        MENUITEM "Save as ANSI (system code page)", ID_ENC_ANSI
+        MENUITEM SEPARATOR
+        POPUP "&Reload As"
+        BEGIN
+            MENUITEM "Detect Automatically", ID_REOPEN_AUTO
+            MENUITEM "UTF-8", ID_REOPEN_UTF8
+            MENUITEM "UTF-16 LE", ID_REOPEN_UTF16LE
+            MENUITEM "ANSI (system code page)", ID_REOPEN_ANSI
+            MENUITEM "Japanese (Shift-JIS)", ID_REOPEN_SHIFT_JIS
+            MENUITEM "Japanese (EUC-JP)", ID_REOPEN_EUC_JP
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Line Endings: Windows (CR LF)", ID_EOL_CRLF
+        MENUITEM "Line Endings: UNIX (LF)", ID_EOL_LF
+        MENUITEM "Line Endings: Classic Mac (CR)", ID_EOL_CR
+    END
+    POPUP "Find"
+    BEGIN
+        MENUITEM "&Find...\tCtrl+F", ID_EDIT_FIND_TEXT
+        MENUITEM "R&eplace...\tCtrl+H", ID_EDIT_REPLACE_TEXT
+        MENUITEM "Find &Next\tF3", ID_EDIT_FIND_NEXT_TEXT
+        MENUITEM "Find Pre&vious\tShift+F3", ID_EDIT_FIND_PREV_TEXT
+        MENUITEM SEPARATOR
+        MENUITEM "&Go To Line...\tCtrl+G", ID_EDIT_GOTO_LINE
+    END
+    POPUP "Pane"
+    BEGIN
+        MENUITEM "&Open File in This Pane...", ID_FILE_OPEN_IN_PANE
+        MENUITEM "&Save", ID_FILE_SAVE_PANE
+        MENUITEM "Save &As...", ID_FILE_SAVE_PANE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t", ID_EDIT_CUT
+        MENUITEM "&Copy", ID_EDIT_COPY
+        MENUITEM "&Paste", ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Mark Selected Lines as &Resolved", ID_MERGE_MARK_RESOLVED
+        MENUITEM "&Unmark Selected Lines", ID_MERGE_UNMARK_RESOLVED
+        MENUITEM SEPARATOR
+        MENUITEM "Toggle &Bookmark", ID_BOOKMARK_TOGGLE
+        MENUITEM "Bookmark Co&mment...", ID_BOOKMARK_COMMENT
+        MENUITEM "Synchronize the Current &Lines", ID_SYNC_ADD
+    END
+    POPUP "Folder"
+    BEGIN
+        MENUITEM "&Show File Comparison", ID_FOLDER_OPEN
+        MENUITEM "Open in a &New Tab", ID_FOLDER_OPEN_TAB
+        MENUITEM SEPARATOR
+        MENUITEM "Copy to the &Right", ID_MERGE_COPY_TO_RIGHT
+        MENUITEM "Copy to the &Left", ID_MERGE_COPY_TO_LEFT
+        MENUITEM "Delete from the Left...", ID_FOLDER_DELETE_LEFT
+        MENUITEM "Delete from the Right...", ID_FOLDER_DELETE_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Select &Files...", ID_FOLDER_SELECT
+        MENUITEM "&Expand All", ID_FOLDER_EXPAND_ALL
+        MENUITEM "&Collapse All", ID_FOLDER_COLLAPSE_ALL
+    END
+END
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N", ID_FILE_NEW_TWO_WAY, VIRTKEY, CONTROL
+    "N", ID_FILE_NEW_THREE_WAY, VIRTKEY, CONTROL, SHIFT
+    "D", ID_FILE_NEW_FOLDERS, VIRTKEY, CONTROL
+    "O", ID_FILE_OPEN_PATCH, VIRTKEY, CONTROL, SHIFT
+    VK_OEM_PLUS, ID_VIEW_ZOOM_IN, VIRTKEY, CONTROL
+    VK_ADD, ID_VIEW_ZOOM_IN, VIRTKEY, CONTROL
+    VK_OEM_MINUS, ID_VIEW_ZOOM_OUT, VIRTKEY, CONTROL
+    VK_SUBTRACT, ID_VIEW_ZOOM_OUT, VIRTKEY, CONTROL
+    "0", ID_VIEW_ZOOM_FIT, VIRTKEY, CONTROL
+    "1", ID_VIEW_ZOOM_ACTUAL, VIRTKEY, CONTROL
+    "O", ID_FILE_OPEN_IN_PANE, VIRTKEY, CONTROL
+    "S", ID_FILE_SAVE_PANE, VIRTKEY, CONTROL
+    "S", ID_FILE_SAVE_ALL_PANES, VIRTKEY, CONTROL, SHIFT
+    "W", ID_FILE_CLOSE_TAB, VIRTKEY, CONTROL
+    VK_F4, ID_FILE_CLOSE_TAB, VIRTKEY, CONTROL
+    "Z", ID_EDIT_UNDO, VIRTKEY, CONTROL
+    "Y", ID_EDIT_REDO, VIRTKEY, CONTROL
+    "Z", ID_EDIT_REDO, VIRTKEY, CONTROL, SHIFT
+    "X", ID_EDIT_CUT, VIRTKEY, CONTROL
+    "C", ID_EDIT_COPY, VIRTKEY, CONTROL
+    "V", ID_EDIT_PASTE, VIRTKEY, CONTROL
+    VK_INSERT, ID_EDIT_COPY, VIRTKEY, CONTROL
+    VK_INSERT, ID_EDIT_PASTE, VIRTKEY, SHIFT
+    VK_DELETE, ID_EDIT_CUT, VIRTKEY, SHIFT
+    "A", ID_EDIT_SELECT_ALL, VIRTKEY, CONTROL
+    "F", ID_EDIT_FIND_TEXT, VIRTKEY, CONTROL
+    "H", ID_EDIT_REPLACE_TEXT, VIRTKEY, CONTROL
+    VK_F3, ID_EDIT_FIND_NEXT_TEXT, VIRTKEY
+    VK_F3, ID_EDIT_FIND_PREV_TEXT, VIRTKEY, SHIFT
+    "G", ID_EDIT_GOTO_LINE, VIRTKEY, CONTROL
+    VK_F5, ID_VIEW_RECOMPARE, VIRTKEY
+    VK_F5, ID_VIEW_START, VIRTKEY, CONTROL
+    VK_TAB, ID_VIEW_NEXT_TAB, VIRTKEY, CONTROL
+    VK_TAB, ID_VIEW_PREV_TAB, VIRTKEY, CONTROL, SHIFT
+    VK_DOWN, ID_MERGE_NEXT_CHANGE, VIRTKEY, ALT
+    VK_UP, ID_MERGE_PREV_CHANGE, VIRTKEY, ALT
+    VK_F8, ID_MERGE_NEXT_CHANGE, VIRTKEY
+    VK_F8, ID_MERGE_PREV_CHANGE, VIRTKEY, SHIFT
+    VK_DOWN, ID_MERGE_NEXT_CONFLICT, VIRTKEY, CONTROL, ALT
+    VK_UP, ID_MERGE_PREV_CONFLICT, VIRTKEY, CONTROL, ALT
+    VK_RIGHT, ID_MERGE_COPY_TO_RIGHT, VIRTKEY, ALT
+    VK_LEFT, ID_MERGE_COPY_TO_LEFT, VIRTKEY, ALT
+    "M", ID_MERGE_AUTO, VIRTKEY, CONTROL
+    "R", ID_MERGE_MARK_RESOLVED, VIRTKEY, CONTROL
+    "R", ID_MERGE_UNMARK_RESOLVED, VIRTKEY, CONTROL, SHIFT
+    VK_F2, ID_BOOKMARK_TOGGLE, VIRTKEY, CONTROL
+    VK_F2, ID_BOOKMARK_NEXT, VIRTKEY
+    VK_F2, ID_BOOKMARK_PREV, VIRTKEY, SHIFT
+    VK_F2, ID_BOOKMARK_COMMENT, VIRTKEY, CONTROL, SHIFT
+    "P", ID_FILE_PRINT, VIRTKEY, CONTROL
+    "E", ID_FILE_REPORT, VIRTKEY, CONTROL
+    VK_F1, ID_HELP, VIRTKEY
+    "L", ID_SYNC_ADD, VIRTKEY, CONTROL
+    "W", ID_VIEW_WORD_WRAP, VIRTKEY, CONTROL, SHIFT
+    "P", ID_VIEW_PADDING, VIRTKEY, CONTROL, SHIFT
+    "L", ID_VIEW_LINE_DETAIL, VIRTKEY, CONTROL, SHIFT
+    VK_OEM_COMMA, ID_OPT_OPTIONS, VIRTKEY, CONTROL
+END
+
+IDD_NEW_COMPARISON DIALOGEX 0, 0, 380, 148
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New Comparison"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    CONTROL         "&Two-way comparison",IDC_NC_TWO_WAY,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,8,100,10
+    CONTROL         "T&hree-way comparison (merge into the common ancestor)",IDC_NC_THREE_WAY,"Button",BS_AUTORADIOBUTTON,116,8,220,10
+    LTEXT           "&Left file:",IDC_NC_LEFT_LABEL,10,30,56,8
+    EDITTEXT        IDC_NC_LEFT,70,28,244,14,ES_AUTOHSCROLL | WS_GROUP
+    PUSHBUTTON      "Browse...",IDC_NC_BROWSE_LEFT,318,28,52,14
+    LTEXT           "&Ancestor:",IDC_NC_MIDDLE_LABEL,10,50,56,8
+    EDITTEXT        IDC_NC_MIDDLE,70,48,244,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_NC_BROWSE_MIDDLE,318,48,52,14
+    LTEXT           "&Right file:",IDC_NC_RIGHT_LABEL,10,70,56,8
+    EDITTEXT        IDC_NC_RIGHT,70,68,244,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_NC_BROWSE_RIGHT,318,68,52,14
+    CONTROL         "Compare &folders",IDC_NC_FOLDERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,70,88,200,10
+    LTEXT           "Tip: drop two or three files (or folders) from File Explorer onto the window to compare them.",IDC_NC_HINT,10,104,360,8
+    DEFPUSHBUTTON   "Compare",IDOK,262,124,52,16
+    PUSHBUTTON      "Cancel",IDCANCEL,318,124,52,16
+END
+
+IDD_FIND_REPLACE DIALOGEX 0, 0, 300, 112
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Find and Replace"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "Fi&nd:",IDC_STATIC,8,10,42,8
+    EDITTEXT        IDC_FR_FIND,54,8,170,14,ES_AUTOHSCROLL
+    LTEXT           "Re&place:",IDC_STATIC,8,30,42,8
+    EDITTEXT        IDC_FR_REPLACE,54,28,170,14,ES_AUTOHSCROLL
+    CONTROL         "Match &case",IDC_FR_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,54,48,80,10
+    CONTROL         "&Whole word",IDC_FR_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,54,60,80,10
+    CONTROL         "Replace All in &selection",IDC_FR_SELECTION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,48,92,10
+    CONTROL         "Wrap ar&ound",IDC_FR_WRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,138,60,86,10
+    DEFPUSHBUTTON   "Find &Next",IDC_FR_FIND_NEXT,232,8,60,14
+    PUSHBUTTON      "Find Pre&vious",IDC_FR_FIND_PREV,232,26,60,14
+    PUSHBUTTON      "&Replace",IDC_FR_REPLACE_ONE,232,44,60,14
+    PUSHBUTTON      "Replace &All",IDC_FR_REPLACE_ALL,232,62,60,14
+    PUSHBUTTON      "Close",IDCANCEL,232,90,60,14
+    LTEXT           "",IDC_FR_STATUS,8,93,216,8,SS_ENDELLIPSIS
+END
+
+IDD_GOTO_LINE DIALOGEX 0, 0, 200, 64
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go To Line"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_GT_RANGE,8,8,184,8
+    EDITTEXT        IDC_GT_LINE,8,20,184,14,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "Go",IDOK,86,42,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,142,42,50,14
+END
+
+IDD_STATISTICS DIALOGEX 0, 0, 260, 170
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Comparison Statistics"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_STATS_TEXT,8,8,244,136,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "Close",IDOK,202,150,50,14
+END
+
+IDD_OPT_COMPARE DIALOGEX 0, 0, 300, 190
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION | WS_DISABLED
+CAPTION "Comparison"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Whitespace",IDC_STATIC,7,7,286,50
+    CONTROL         "&Compare whitespace",IDC_OC_WS_COMPARE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,19,200,10
+    CONTROL         "Ignore whitespace c&hanges (runs of spaces and tabs compare equal)",IDC_OC_WS_CHANGES,"Button",BS_AUTORADIOBUTTON,14,31,270,10
+    CONTROL         "Ignore &all whitespace",IDC_OC_WS_ALL,"Button",BS_AUTORADIOBUTTON,14,43,200,10
+    CONTROL         "Ignore ca&se",IDC_OC_CASE,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,14,64,200,10
+    CONTROL         "Ignore &line ending differences (CR LF, LF, CR)",IDC_OC_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,77,240,10
+    CONTROL         "Ignore inserted or removed &blank lines",IDC_OC_BLANK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,90,240,10
+    GROUPBOX        "Numeric tolerance (0 = off)",IDC_STATIC,7,108,286,58
+    LTEXT           "Numbers that differ by at most this much compare equal.",IDC_STATIC,14,120,270,8
+    LTEXT           "Ab&solute:",IDC_STATIC,14,136,50,8
+    EDITTEXT        IDC_OC_ABS,66,134,70,13,ES_AUTOHSCROLL
+    LTEXT           "&Relative (%):",IDC_STATIC,150,136,50,8
+    EDITTEXT        IDC_OC_REL,204,134,70,13,ES_AUTOHSCROLL
+    LTEXT           "Example: 0.001 absolute, or 0.5 relative (half a percent).",IDC_STATIC,14,152,270,8
+END
+
+IDD_OPT_RULES DIALOGEX 0, 0, 300, 190
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION | WS_DISABLED
+CAPTION "Rules"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Line expressions: text matching these regular expressions is left out when lines are compared (one per line, e.g. //.*$ for C++ comments).",IDC_STATIC,7,5,286,17
+    EDITTEXT        IDC_OR_LINE,7,24,286,38,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "&Block expressions: lines from one matching Begin up to the next matching End are ignored (the Nth End pairs with the Nth Begin).",IDC_STATIC,7,67,286,17
+    LTEXT           "Begin:",IDC_STATIC,7,87,40,8
+    EDITTEXT        IDC_OR_BEGIN,7,97,140,36,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "End:",IDC_STATIC,153,87,40,8
+    EDITTEXT        IDC_OR_END,153,97,140,36,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "Line-&pairing rule: inside a changed block, lines whose first capture group matches correspond (e.g. ^(\\w+)= for key=value files).",IDC_STATIC,7,139,286,17
+    EDITTEXT        IDC_OR_PAIRING,7,158,286,13,ES_AUTOHSCROLL
+    LTEXT           "Regular expressions use ECMAScript syntax.",IDC_STATIC,7,176,286,8
+END
+
+IDD_OPT_DISPLAY DIALOGEX 0, 0, 300, 190
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION | WS_DISABLED
+CAPTION "Display"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "Font:",IDC_STATIC,7,9,30,8
+    LTEXT           "",IDC_OD_FONT_NAME,40,9,170,8,SS_ENDELLIPSIS
+    PUSHBUTTON      "&Font...",IDC_OD_FONT,233,6,60,14
+    LTEXT           "&Tab size:",IDC_STATIC,7,27,40,8
+    EDITTEXT        IDC_OD_TAB,50,25,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "&Wrap long lines",IDC_OD_WRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,44,140,10
+    CONTROL         "Vertical &padding (align blocks with blank rows)",IDC_OD_PADDING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,56,190,10
+    CONTROL         "Line &detail panel",IDC_OD_DETAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,68,140,10
+    CONTROL         "&Syntax highlighting",IDC_OD_SYNTAX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,160,44,130,10
+    CONTROL         "Show w&hitespace and line endings",IDC_OD_WHITESPACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,160,68,133,10
+    LTEXT           "&Colours:",IDC_STATIC,7,86,40,8
+    LISTBOX         IDC_OD_COLORS,7,96,190,88,LBS_NOINTEGRALHEIGHT | LBS_NOTIFY | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_OD_SWATCH,"Static",SS_SUNKEN | SS_NOTIFY,205,96,88,24
+    PUSHBUTTON      "C&hange...",IDC_OD_COLOR_CHANGE,205,126,88,14
+    PUSHBUTTON      "&Reset All Colours",IDC_OD_COLOR_RESET,205,146,88,14
+END
+
+IDD_FOLDER_SELECT DIALOGEX 0, 0, 240, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Files"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "Select the files whose &name matches (wildcards, separated by ;):",IDC_STATIC,8,8,224,8
+    EDITTEXT        IDC_FS_PATTERN,8,20,224,14,ES_AUTOHSCROLL
+    LTEXT           "and whose status is:",IDC_STATIC,8,42,224,8
+    CONTROL         "&Identical",IDC_FS_IDENTICAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,54,100,10
+    CONTROL         "&Left only / changed on left",IDC_FS_LEFT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,54,112,10
+    CONTROL         "&Different / conflicts",IDC_FS_DIFFERENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,68,100,10
+    CONTROL         "&Right only / changed on right",IDC_FS_RIGHT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,68,112,10
+    DEFPUSHBUTTON   "Select",IDOK,128,96,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,182,96,50,14
+END
+
+IDD_OPT_FOLDERS DIALOGEX 0, 0, 300, 190
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION | WS_DISABLED
+CAPTION "Folders and Images"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Compare corresponding files by",IDC_STATIC,7,7,286,72
+    CONTROL         "&Quick: size and modification time only (fastest)",IDC_OF_QUICK,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,20,270,10
+    CONTROL         "&Byte by byte",IDC_OF_BINARY,"Button",BS_AUTORADIOBUTTON,14,33,270,10
+    CONTROL         "&Thorough: text files with the file comparison rules (whitespace, line endings, ...)",IDC_OF_THOROUGH,"Button",BS_AUTORADIOBUTTON,14,46,276,10
+    LTEXT           "Thorough mode compares files larger than",IDC_STATIC,24,62,140,8
+    EDITTEXT        IDC_OF_LIMIT,166,60,30,13,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    LTEXT           "MB byte by byte.",IDC_STATIC,200,62,80,8
+    LTEXT           "&Include files (wildcards separated by ; empty = all files):",IDC_STATIC,7,88,286,8
+    EDITTEXT        IDC_OF_INCLUDE,7,99,286,14,ES_AUTOHSCROLL
+    LTEXT           "&Exclude files and folders (a trailing \\ means a folder, e.g. .git\\;bin\\;*.obj):",IDC_STATIC,7,121,286,8
+    EDITTEXT        IDC_OF_EXCLUDE,7,132,286,14,ES_AUTOHSCROLL
+    LTEXT           "Open folder comparisons are compared again when these settings change.",IDC_STATIC,7,152,286,8
+    LTEXT           "&Image colour tolerance (0 - 255 per channel):",IDC_STATIC,7,170,170,8
+    EDITTEXT        IDC_OF_IMAGE_TOLERANCE,180,168,30,13,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_REPORT DIALOGEX 0, 0, 260, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Create Report"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Format",IDC_STATIC,7,7,246,62
+    CONTROL         "&HTML page (side by side, with colours)",IDC_RP_HTML,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,19,230,10
+    CONTROL         "HTML &slideshow (one difference per slide)",IDC_RP_SLIDES,"Button",BS_AUTORADIOBUTTON,14,31,230,10
+    CONTROL         "&XML",IDC_RP_XML,"Button",BS_AUTORADIOBUTTON,14,43,230,10
+    CONTROL         "&Unified diff (patch)",IDC_RP_DIFF,"Button",BS_AUTORADIOBUTTON,14,55,230,10
+    GROUPBOX        "Content",IDC_STATIC,7,74,246,76
+    CONTROL         "&Whole files",IDC_RP_WHOLE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,86,230,10
+    CONTROL         "Only the &differences, with",IDC_RP_CONTEXT,"Button",BS_AUTORADIOBUTTON,14,99,104,10
+    EDITTEXT        IDC_RP_LINES,120,97,28,13,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    LTEXT           "lines of context",IDC_STATIC,152,99,90,8
+    CONTROL         "Include a report of each different &file",IDC_RP_FILES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,118,230,10
+    CONTROL         "Include &identical items",IDC_RP_IDENTICAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,131,230,10
+    CONTROL         "&Open the report when it is saved",IDC_RP_OPEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,246,10
+    DEFPUSHBUTTON   "Save...",IDOK,147,168,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,168,50,14
+END
+
+IDD_COMMENT DIALOGEX 0, 0, 260, 98
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bookmark Comment"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_CM_LABEL,7,7,246,8
+    EDITTEXT        IDC_CM_TEXT,7,19,246,52,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "An empty comment keeps the bookmark without a comment.",IDC_STATIC,7,78,136,16
+    DEFPUSHBUTTON   "OK",IDOK,147,78,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,78,50,14
+END
+
+IDD_PAGE_SETUP DIALOGEX 0, 0, 280, 124
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Page Setup"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Header:",IDC_STATIC,7,9,40,8
+    EDITTEXT        IDC_PS_HEADER,50,7,223,14,ES_AUTOHSCROLL
+    LTEXT           "&Footer:",IDC_STATIC,7,29,40,8
+    EDITTEXT        IDC_PS_FOOTER,50,27,223,14,ES_AUTOHSCROLL
+    LTEXT           "Fields: {title} {files} {date} {page} {pages}",IDC_STATIC,50,44,223,8
+    CONTROL         "&Landscape",IDC_PS_LANDSCAPE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,62,200,10
+    CONTROL         "Print only pages with &changes",IDC_PS_CHANGED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,76,200,10
+    LTEXT           "Font &size (points):",IDC_STATIC,7,94,70,8
+    EDITTEXT        IDC_PS_FONT,80,92,28,13,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,167,104,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,223,104,50,14
+END
+
+IDD_PRINT_PREVIEW DIALOGEX 0, 0, 480, 300
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_CLIPCHILDREN
+CAPTION "Print Preview"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Print...",IDC_PV_PRINT,4,4,50,14
+    PUSHBUTTON      "< Pre&vious",IDC_PV_PREV,58,4,50,14
+    PUSHBUTTON      "&Next >",IDC_PV_NEXT,112,4,50,14
+    PUSHBUTTON      "Close",IDCANCEL,166,4,50,14
+    LTEXT           "",IDC_PV_PAGE,222,4,200,14,SS_CENTERIMAGE
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 240, 92
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MergeFiles"
+FONT 9, "Segoe UI", 400, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "MergeFiles",IDC_STATIC,40,10,190,10
+    LTEXT           "",IDC_ABOUT_VERSION,40,22,190,8
+    LTEXT           "Two-way and three-way comparison and merging of text files.",IDC_STATIC,40,38,190,16
+    DEFPUSHBUTTON   "OK",IDOK,182,70,50,14
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "MergeFiles"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+    ID_INDICATOR_ENCODING   "Unicode (UTF-16 LE with BOM) - CR LF"
+    ID_INDICATOR_CHANGES    "999 removals - 999 insertions - 999 changes - 999 conflicts"
+    ID_INDICATOR_POSITION   "Line 999999 of 999999 - Column 9999"
+    ID_FILE_NEW_TWO_WAY     "Compare two files\nNew two-way comparison"
+    ID_FILE_REPORT          "Save the comparison as an HTML, XML or unified diff report\nCreate report"
+    ID_FILE_SAVE_ARCHIVE    "Save the files and the state of this comparison in one archive file\nSave comparison archive"
+    ID_FILE_OPEN_ARCHIVE    "Open a comparison saved as an archive\nOpen comparison archive"
+    ID_FILE_PAGE_SETUP_MF   "Header, footer, orientation and font size for printing\nPage setup"
+    ID_FILE_PRINT           "Print the comparison\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Show how the comparison will print\nPrint preview"
+    ID_BOOKMARK_COMMENT     "Add or edit a comment on the bookmark of the current line\nBookmark comment"
+    ID_FILE_NEW_THREE_WAY   "Compare two revisions with their common ancestor and merge them\nNew three-way comparison"
+    ID_FILE_OPEN_IN_PANE    "Open another file in the current pane\nOpen file in current pane"
+    ID_FILE_SAVE_PANE       "Save the file in the current pane\nSave current pane"
+    ID_FILE_SAVE_PANE_AS    "Save the file in the current pane under a new name\nSave current pane as"
+    ID_FILE_SAVE_ALL_PANES  "Save every modified file of this comparison\nSave all"
+    ID_FILE_CLOSE_TAB       "Close this comparison\nClose comparison"
+    ID_EDIT_FIND_TEXT       "Find text in the current pane\nFind"
+    ID_EDIT_GOTO_LINE       "Jump to a line number\nGo to line"
+    ID_EDIT_INDENT          "Indent the selected lines\nIndent"
+    ID_EDIT_OUTDENT         "Un-indent the selected lines\nUn-indent"
+    ID_VIEW_START           "Reload the files from disk and compare them again\nStart: reload and compare"
+    ID_VIEW_STOP            "Stop the folder comparison in progress (Esc)\nStop"
+    ID_VIEW_RECOMPARE       "Compare the files again\nRecompare"
+    ID_VIEW_LAYOUT_TWO      "Show two panes (two-way comparison)\nTwo panes"
+    ID_VIEW_LAYOUT_THREE    "Show three panes (three-way comparison, merging into the middle file)\nThree panes"
+    ID_VIEW_STATISTICS      "Show a summary of the comparison\nComparison statistics"
+    ID_MERGE_NEXT_CHANGE    "Go to the next change\nNext change"
+    ID_MERGE_PREV_CHANGE    "Go to the previous change\nPrevious change"
+    ID_MERGE_NEXT_CONFLICT  "Go to the next conflict\nNext conflict"
+    ID_MERGE_PREV_CONFLICT  "Go to the previous conflict\nPrevious conflict"
+    ID_MERGE_COPY_TO_RIGHT  "Copy the current change to the file on the right (into the middle file in a three-way comparison)\nCopy change to the right"
+    ID_MERGE_COPY_TO_LEFT   "Copy the current change to the file on the left (into the middle file in a three-way comparison)\nCopy change to the left"
+    ID_MERGE_AUTO           "Merge every non-conflicting change into the middle file\nAutomatic merge"
+    ID_MERGE_MARK_RESOLVED  "Dim the selected lines to show they are dealt with\nMark as resolved"
+    ID_MERGE_UNMARK_RESOLVED "Undim the selected lines\nUnmark resolved"
+    ID_EDIT_UNDO            "Undo the last change\nUndo"
+    ID_EDIT_REDO            "Redo the last undone change\nRedo"
+    ID_OPT_OPTIONS          "Comparison rules, fonts and colours\nOptions"
+    ID_VIEW_WORD_WRAP       "Wrap long lines at the pane width\nWord wrap"
+    ID_VIEW_PADDING         "Keep corresponding blocks side by side with blank rows\nVertical padding"
+    ID_VIEW_LINE_DETAIL     "Show the current lines of all files one above the other\nLine detail panel"
+    ID_BOOKMARK_TOGGLE      "Set or remove a bookmark on the current line\nToggle bookmark"
+    ID_BOOKMARK_NEXT        "Go to the next bookmark\nNext bookmark"
+    ID_BOOKMARK_PREV        "Go to the previous bookmark\nPrevious bookmark"
+    ID_SYNC_ADD             "Make the lines at the carets of all panes correspond\nSynchronize current lines"
+    ID_SYNC_CLEAR           "Remove all synchronization links\nRemove synchronization links"
+    ID_FILE_NEW_FOLDERS     "Compare two or three folder hierarchies\nNew folder comparison"
+    ID_FILE_OPEN_PATCH      "Review a patch (unified diff) and apply chosen hunks\nOpen patch file"
+    ID_VIEW_FORMAT_XML      "Open a comparison of the files laid out one XML element per line\nCompare as formatted XML"
+    ID_FOLDER_DELETE_LEFT   "Move the selected items of the left folder to the Recycle Bin\nDelete from left"
+    ID_FOLDER_DELETE_RIGHT  "Move the selected items of the right folder to the Recycle Bin\nDelete from right"
+    ID_FOLDER_OPEN          "Compare the selected files below the folders\nShow file comparison"
+    ID_FOLDER_SELECT        "Select files by name and status\nSelect files"
+END
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION MERGEFILES_VERSION_MAJOR,MERGEFILES_VERSION_MINOR,MERGEFILES_VERSION_PATCH,MERGEFILES_VERSION_BUILD
+ PRODUCTVERSION MERGEFILES_VERSION_MAJOR,MERGEFILES_VERSION_MINOR,MERGEFILES_VERSION_PATCH,MERGEFILES_VERSION_BUILD
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0x0L
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "MergeFiles - compare and merge files"
+            VALUE "FileVersion", MERGEFILES_VERSION_FULL
+            VALUE "InternalName", "MergeFiles"
+            VALUE "OriginalFilename", "MergeFiles.exe"
+            VALUE "ProductName", "MergeFiles"
+            VALUE "ProductVersion", MERGEFILES_VERSION_FULL
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

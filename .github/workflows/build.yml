@@ -1,0 +1,86 @@
+# Builds and tests MergeFiles on every pull request and push to main. A push to main also tags the next
+# version (scripts\next_version.ps1: feat -> minor, "!" or BREAKING CHANGE -> major, else patch) and
+# publishes a GitHub release with the zipped programs. "[skip release]" in the commit message builds
+# and tests without releasing.
+name: Build and release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Runs on main queue one after another, so each one sees the tag the previous one made.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: windows-2022   # VS 2022 with MFC; windows-latest is VS 2026, which the "Visual Studio 17 2022" generator does not match
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+      release: ${{ steps.version.outputs.release }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0   # all tags and history, for the next version
+
+      - name: Work out the next version
+        id: version
+        shell: pwsh
+        run: ./scripts/next_version.ps1
+
+      - name: Build (warnings are errors)
+        shell: pwsh
+        run: ./scripts/build.ps1 -Config Release -Version ${{ steps.version.outputs.version }} -BuildNumber ${{ github.run_number }} -WarningsAsErrors
+
+      - name: Unit tests and CLI checks
+        shell: pwsh
+        run: ./scripts/test.ps1 -Config Release
+
+      - name: Check the version stamp
+        shell: pwsh
+        run: |
+          $expected = "${{ steps.version.outputs.version }}.${{ github.run_number }}"
+          $actual = (Get-Item build/bin/Release/MergeFiles.exe).VersionInfo.FileVersion
+          Write-Host "MergeFiles.exe file version: $actual"
+          if ($actual -ne $expected) { throw "Expected file version $expected, found $actual" }
+
+      - name: Package
+        shell: pwsh
+        run: ./scripts/package.ps1 -Version ${{ steps.version.outputs.version }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: MergeFiles-${{ steps.version.outputs.version }}-win-x64
+          path: dist/
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && needs.build.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # create the tag and the release
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: MergeFiles-${{ needs.build.outputs.version }}-win-x64
+          path: dist
+
+      - name: Tag and publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.build.outputs.tag }}
+        run: |
+          gh release create "$TAG" dist/* \
+            --target "$GITHUB_SHA" \
+            --title "MergeFiles $TAG" \
+            --generate-notes \
+            --notes "Windows x64. Unzip and run MergeFiles.exe (GUI) or MergeFilesCli.exe. Needs the Microsoft Visual C++ 2015-2022 Redistributable (x64), which includes the MFC DLLs. Press F1 in the program for help (MergeFiles.html)."

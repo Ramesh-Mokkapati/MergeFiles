@@ -1,0 +1,252 @@
+Support for 64-bit architecture
+
+File comparison and merging
+
+File comparison and merging Instant Overview
+
+Two-way text comparison
+Standard Professional	Identify insertions, removals and changes between different versions of source code, configuration files, XML documents, web pages, or any other text file.
+
+Two-way text merging
+Standard Professional	Reconcile insertions, removals and changes between different versions of source code, configuration files, XML documents, web pages, or any other text file.
+
+Three-way comparison and merging
+Compare and merge changes in two updated revisions of a file with their common ancestor (or any other file). Use to reconcile conflicting changes made to a set of files by multiple developers or to merge branches in a source code control or software configuration management system.
+
+Directly open and compare text from Microsoft Office (Word and Excel), OpenDocument, PDF and RTF files
+Save time by directly loading and comparing popular file formats. Alternatively, you can copy text from other applications and paste it into a Merge text comparison window.
+
+Support for archive files†
+Directly compare files contained within a variety of archive formats (.zip, .tar, etc.).
+
+Numeric tolerance in text comparisons
+Compare corresponding numeric values within text files and, if desired, treat them as identical if they are within a certain tolerance of one another.
+
+Special display formatting for XML and XHTML files
+See changes clearly in even the most densely formatted XML files without sacrificing the fidelity of a true textual comparison.
+
+Binary file comparison
+Compare binary data files and see differences at the byte level.
+
+Image file comparison
+Compare various types of image file and see precisely which pixels have been modified.
+
+Comprehensive support for text-based patch file
+Review the changes described by patch files and selectively apply them to text files.
+
+Syntax highlighting
+Better comprehend a wide range of source files with built-in syntax highlighting.
+
+Reports in HTML, HTML slideshow, XML and UNIX diff format
+Create reports on file comparisons for archiving, distribution or export to other applications. Annotate HTML reports by adding bookmark comments.
+
+Bookmarks and comments
+Mark points of interest. Annotate comparisons with comments and questions, before saving as a single-file archive to be emailed to other team members for review.
+
+Single-file comparison archives
+Save a comparison to a single file for archival or later review, even on a different machine. Saved file comparisons include any bookmarks and associated comments that have been created, making it possible to annotate comparisons with questions and comments, before emailing them to other team members for review.
+
+Comparison statistics window
+See a summary of the current comparison.
+
+Integrated folder comparison
+Quickly and efficiently compare and merge all the files changed between different folder hierarchies. Process entire sets or branches of source code, web pages, or other text files.
+
+Point-and-click merging
+Copy inserted, removed or changed blocks of text from one file to another (or delete them) using a single mouse click. Files can be manually merged very quickly.
+
+In-place editing
+Make fine-grained changes directly to the files being compared in the file comparison window itself. You do not have to open a separate editing window.
+
+Linking lines
+Related blocks of text are graphically linked enabling you to see at a glance how files are related. Linking lines eliminate the need for blank padding lines to keep corresponding lines adjacent to one another.
+
+Optional vertical padding in text comparisons
+Use vertical padding to align all related blocks of text being compared. Without vertical padding, the amount of text visible on screen is maximized, and files are aligned at the vertical centre of the display.
+
+Synchronization links
+Users may add synchronization links to tell Merge to re-synchronize the comparison at particular points. This is particularly useful in some complex comparison scenarios.
+
+Side-by-side text comparison with optional line-over-line detail panel
+Compare text files side-by-side with linking lines showing how the files relate. An optional line-detail panel shows corresponding lines from the compared files above one another, which can be useful for files with long lines.
+
+Optional wrapping of long lines
+See all of the text within each line without having constantly to scroll from side-to-side.
+
+Synchronized scrolling
+Related parts of files are kept aligned in the vertical centre of the file comparison display as any file is scrolled.
+
+Highlighting of changes within lines
+Identify at-a-glance inserts, removals and changes made within lines down to the level of individual characters.
+
+Automatic merging
+Quickly and safely merge changes in two updated revisions of a file with a common ancestor (or any other file). Automatically merged text is marked with edit markers and any conflicting sections flagged for later manual processing. Automatic merging is an undoable operation, making it safe and easy to try an automatic merge speculatively to see exactly what it will do.
+
+Mark selected lines as resolved
+Lines marked as resolved are dimmed (in the same way as following an automatic merge). This makes it easy to keep track of the areas of a file with which you are finished.
+
+Unicode and MBCS support
+Compare and merge Unicode or MBCS encoded text files (ASCII files are also supported). Critical for working with many non-English language files. For the benefit of our Japanese customers, EUC-JP encoding is also supported.
+
+Input method editor (IME) support
+Facilitates convenient entry and editing of text in character-rich Asia-Pacific languages.
+
+Overview strips
+Provides an instant visual indication of the extent of the changes between files and where those changes occur. Clicking on a change in an overview strip will jump directly to that change.
+
+Conflict highlighting
+After an automatic merge, any conflicting sections of the files being merged are flagged for manual processing. Commands and shortcut keys are provided to jump between conflicts. Even difficult files can thus be processed swiftly using a combination of automatic and manual merging.
+
+Edit markers
+Visual history of any changes (edits or copies from another file) made to a file during the merging process.
+
+Bookmarks
+Makes it easy to mark and return to particular points of interest in a file.
+
+Go to line
+Jump directly to a line using its line number.
+
+Read-only and modified indicators
+Visual indication of whether a file is read-only and whether it has been modified since last saving.
+
+Change summary
+Indicates the number of changes between each pair of files.
+
+Column/line number indicator
+Identifies the current location of the cursor when editing a file.
+
+Drag and drop files
+Open files by dragging from Windows File Explorer or macOS Finder.
+
+Printing support
+Produce a hard copy (or a PDF file on macOS, or on Windows using Adobe Acrobat Distiller) of comparisons for reference or audit. Printed comparisons contain all the highlighting and linking lines of the on-screen presentation. To save paper, you can choose to print just the pages that contain changes.
+
+Print preview
+See how a comparison printout will look before committing it to paper.
+
+Flexible whitespace handling
+Prevents flagging of whitespace differences when whitespace is not considered important.
+
+Flexible line ending support
+Allow intelligent cross-platform file sharing: work with files containing UNIX (LF), Windows (CR LF) or Mac (CR) style line endings. Choose whether to ignore differences in line endings when comparing files.
+
+Display line ending characters
+Optionally see individual CR and LF characters to identify differences in multiple-platform originated files.
+
+Line expressions
+Ignore differences in comments, source code control keywords and other defined regular expressions when comparing files.
+
+Block expressions
+Ignore blocks of text bounded by lines matching beginning and ending regular expressions. This is especially useful for ignoring blocks of auto-generated content.
+
+Line-pairing rules
+Line-pairing rules enable Merge to pair corresponding lines in a block of changed text based on particular portions of a line. Line-pairing rules can provide excellent results for certain comparisons (e.g. those of localization files in different languages) that would otherwise provide unhelpful results.
+
+Block indent/un-indent
+Easily set the correct indentation level of entire blocks of text when merging text from different files.
+
+Find/Replace
+Search for, and optionally replace, specified text within a file or selection.
+
+Customize fonts and colours
+Change the style of presentation to suit your preferences or needs.
+
+Customize printed headers and footers
+Set the headers and footers of printed pages to suit your requirements.
+
+Keyboard shortcuts
+Save time by controlling Merge using the keyboard.
+
+Drag and drop text editing
+Conveniently move arbitrary text between files or within a file using the mouse.
+
+Jump to next/previous change
+Quickly move between changes in a file using the mouse or keyboard shortcuts.
+
+Replace file commands
+Conveniently replace the contents of one file with that of another. Useful when one revision is entirely correct and its contents need to be copied to another revision.
+
+Tab strip
+Switch between multiple file comparison windows with a single mouse click.
+
+Toolbars or ribbon
+Easily access frequently used commands.
+
+Folder comparison and synchronization
+
+Feature	Benefit
+Folder comparison and synchronization Instant Overview
+Learn how to compare and synchronize folders with Merge in a few minutes.
+
+Two-way folder comparison
+Identify file insertions, removals and changes between two folder hierarchies. Efficiently process entire sets or branches of source code, web pages, or other text files.
+
+Three-way folder comparison
+Identify file insertions, removals and changes between two folder hierarchies and a common ancestor (or some other) folder hierarchy. Use to reconcile conflicting changes made to a set of files by multiple developers or to merge branches in a source code control or software configuration management system.
+
+Show a file comparison for the currently selected folder comparison row
+Split the display horizontally, with a file comparison shown beneath the folder comparison. Click on a row in the folder comparison to compare that row’s files in the file comparison below.
+
+Support for archive files
+Compare a variety of archive formats (.zip, .tar, etc.) as if they were folders. Compare the contents of an archive to a folder to verify its contents, or to see which files have changed since the archive was created.
+
+Reports in HTML and XML format
+Create reports on folder comparisons for archiving, distribution or export to other applications. A folder comparison report can, optionally, include file comparison reports for some or all of the files involved in the folder comparison. Thus it is possible, in one operation, to generate a report that is a complete record of all the differences in all of the files involved in a folder comparison. This is especially useful in code review and code audit situations.
+
+Bookmarks and comments
+Mark points of interest. Annotate comparisons with comments and questions, before saving as a single-file archive to be emailed to other team members for review.
+
+Single-file comparison archives
+Save a comparison to a single file for archival or later review, even on a different machine. Saved folder comparisons include any bookmarks and associated comments that have been created, making it possible to annotate comparisons with questions and comments, before emailing them to other team members for review.
+
+Comparison statistics window
+See a summary of the current comparison.
+
+Folder synchronization
+Reconcile differences between folder hierarchies either by copying files from one folder hierarchy to another (or even to a completely separate location) or by launching file comparisons for changed files. Efficiently process entire sets or branches of source code, web pages, or other text files. Keep folder hierarchies on different machines (for example, a desktop and a laptop) in sync with one another.
+
+Automatic folder merging
+Quickly and safely merge changes in two updated revisions of an entire folder hierarchy with a common ancestor (or any other folder hierarchy). Files with conflicting changes are flagged for later manual processing.
+
+Integrated file comparison
+Identify and reconcile differences within corresponding files as well as between folder hierarchies by launching file comparison windows for selected files.
+
+Printing support
+Produce a hard copy (or a PDF file on macOS, or on Windows using Adobe Acrobat Distiller) of comparisons for reference or audit. Printed comparisons contain all the highlighting of the on-screen presentation. To save paper, you can choose to print just the pages that contain changes.
+
+Print preview
+See how a comparison printout will look before committing it to paper.
+
+Visibility filters
+Show only the files and folders of interest that match criteria you define.
+
+Selection filters
+Select files and folders of interest that match criteria you define. Enables complex sets of files to be selected for file merging or folder synchronization.
+
+Thorough comparison option
+Compare corresponding files in folder hierarchies using the criteria (whitespace significance, line ending handling, etc.) defined for file comparisons.
+
+Byte-by-byte comparison option
+Speed up folder comparisons by comparing corresponding files in folder hierarchies that are larger than a certain size using a quick and memory efficient byte-by-byte comparison algorithm.
+
+Quick comparison option
+Save time by performing an extremely fast folder comparison using just the sizes and timestamps of corresponding files.
+
+Customize fonts and colours
+Change the style of presentation to suit your preferences or needs.
+
+Customize printed headers and footers
+Set the headers and footers of printed pages to suit your requirements.
+
+Drag and drop folders
+Select folders for comparison by dragging from Windows File Explorer or macOS Finder.
+
+Toolbars or ribbon
+Standard Professional	Easily access frequently used commands.
+
+Other features
+Full context sensitive help
+Standard Professional	Easily find specific help for the entire product. Context sensitive help is tightly integrated with the main documentation, enabling you to read around a particular topic.
+
+Install/uninstall support
+Standard Professional	Conveniently install and uninstall Merge from your machine.

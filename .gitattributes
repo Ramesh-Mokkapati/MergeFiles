@@ -1,0 +1,3 @@
+# Keep every file byte for byte: no line-ending conversion. The tests compare the sample files in
+# testdata\ exactly (CR LF vs LF, UTF-16, byte-exact round trips and expected merges).
+* -text

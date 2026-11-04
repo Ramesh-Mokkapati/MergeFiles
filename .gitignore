@@ -1,0 +1,6 @@
+# Build output (scripts\build.ps1) and release packages (scripts\package.ps1)
+/build/
+/dist/
+/out/
+.vs/
+*.user
